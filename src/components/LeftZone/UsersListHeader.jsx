@@ -1,14 +1,18 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { TextField, Grid, Button } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
 
 const UsersListHeader = (props) => {
 
    return (
       <div className='main-users-header'>
-         <Grid container spacing={1} alignItems="flex-end">
+         <input 
+            type='text' 
+            placeholder='Search'
+            onChange={e => props.handleSearch(e.target.value)} 
+         />
+         <Link to='/add'>Add</Link>
+         {/* <Grid container spacing={1} alignItems="flex-end">
             <Grid item>
                <SearchIcon />
             </Grid>
@@ -18,13 +22,13 @@ const UsersListHeader = (props) => {
                   onChange={e => props.handleSearch(e.target.value)}
                />
             </Grid>
-         </Grid>
+         </Grid> 
          <Button
             className='add-user-button'
             component={(props) => <Link to='/add' {...props}/>}
          >
             Add
-         </Button>
+         </Button>*/}
       </div>
    );
 }

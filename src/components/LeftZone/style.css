@@ -12,6 +12,14 @@
    height: 10%;
    width: 100%;
 }
+.main-users-header input{
+   margin: auto 10px;
+   height: fit-content;
+}
+.main-users-header a{
+   color: white;
+   margin: auto 10px;
+}
 
 .main-users-list {
    width: 100%;

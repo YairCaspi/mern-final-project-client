@@ -4,10 +4,13 @@ import { Switch, Route } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-import { addNewUser } from '../../services/serverApi';
+import * as serverApi from '../../services/serverApi';
 import { actions } from '../../Redux/ActionsCreators/usersActions';
+import * as actionsTodos from '../../Redux/ActionsCreators/todosActions';
 
 import AddUser from './AddUser';
+import UserItems from './UserItems';
+
 import './style.css';
 
 function Main(props) {
@@ -43,8 +46,13 @@ function Main(props) {
                   {...innerProps} />
             }/>
 
-            <Route path='/user/:objectId' component={()=><div>test</div>}/>
-            
+            <Route path='/user/:objectId' component={(innerProps) =>
+               <UserItems
+                  loadTodos={props.loadTodos}
+                  {...innerProps}
+               />
+            } />
+
          </Switch>
 
          <Snackbar 
@@ -79,7 +87,7 @@ const mapDispatchToProps = (dispatch, props) => {
    return {
       submitNewUser: (user) => {
          return new Promise((resolve, reject) => {
-            addNewUser(user).then(data => {
+            serverApi.addNewUser(user).then(data => {
                console.log(data);
                if (data._id) {
                   dispatch(actions.addNewUserToUsersList(data));
@@ -88,6 +96,12 @@ const mapDispatchToProps = (dispatch, props) => {
                   reject(data);
                }
             })
+         });
+      },
+
+      loadTodos: (userId) => {
+         serverApi.getUserTodos(userId).then(data => {
+            dispatch(actionsTodos.receiveTodos(data));
          });
       }
    };

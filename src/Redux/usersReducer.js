@@ -26,6 +26,21 @@ const usersReducer = (state = initialState, action) => {
             users: [...state.users, action.payload]
          };
       }
+
+      case USERS.DELETE_USER: {
+         const usersList = [...state.users];
+         const indexToDelete = usersList.findIndex((user) => user._id === action.payload);
+         if (indexToDelete === -1) {
+            return state;
+         } else {
+            usersList.splice(indexToDelete, 1);
+            return {
+               ...state,
+               users: usersList
+            };
+         }
+      }
+
       default:
          return state;
    }

@@ -18,5 +18,12 @@ export const actions = {
          type: USERS.ADD_NEW_USER,
          payload: user
       }
+   },
+
+   deleteUser: (userId) => {
+      return {
+         type: USERS.DELETE_USER,
+         payload: userId
+      }
    }
 }

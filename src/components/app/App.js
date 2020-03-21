@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 import MainLeftComp from '../LeftZone/Main';
 import MainRightComp from '../RightZone/Main';
@@ -9,10 +8,8 @@ function App(props) {
 
   return (
     <div className='main-app-container'>
-      {/* <BrowserRouter> */}
-        <MainLeftComp/>
-        <MainRightComp/>
-      {/* </BrowserRouter> */}
+      <MainLeftComp/>
+      <MainRightComp/>
     </div>
   );
 }

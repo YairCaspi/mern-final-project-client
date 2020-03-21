@@ -14,7 +14,11 @@ export default function UsersList(props) {
       </div>;
    } else {
       usersList = props.users.map(user => 
-         <UserBox key={user._id} user={user}/>
+         <UserBox 
+            key={user._id} 
+            user={user}
+            handleDelete={props.deleteUser}
+         />
       );
    }
 

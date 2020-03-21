@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import serverApi from '../../services/serverApi';
+import * as serverApi from '../../services/serverApi';
 import { actions as usersActions } from '../../Redux/ActionsCreators/usersActions';
 
 import UsersListHeader from './UsersListHeader';
@@ -35,6 +35,7 @@ function Main(props) {
          <UsersList
             isFetching={props.isFetching}
             users={usersList}
+            deleteUser={props.deleteUser}
          />
       </div>
    );
@@ -57,6 +58,12 @@ const mapStateToProps = (state) => {
          dispatch(usersActions.receiveUsers(usersData));
        });
      },
+
+     deleteUser: (userId) => {
+        serverApi.deleteUser(userId).then(() => {
+           dispatch(usersActions.deleteUser(userId));
+        });
+     }
    };
  }
  

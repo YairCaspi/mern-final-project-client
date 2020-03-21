@@ -3,9 +3,13 @@ import logger from 'redux-logger';
 
 import * as types from './actionTypes';
 import usersReducer from './usersReducer';
+import todosReducer from './todosReducer';
+import postsReducer from './postsReducer';
 
 const appReducer = combineReducers({
-   users: usersReducer
+   users: usersReducer,
+   todos: todosReducer,
+   posts: postsReducer
 });
 
 // console.log(appReducer);

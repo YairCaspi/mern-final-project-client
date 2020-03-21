@@ -9,14 +9,14 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 import 'typeface-roboto'; // fonts for material-ui
 
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import appStore from './Redux/store';
 
 const rootElement = (
    <Provider store={appStore}>
-      <BrowserRouter history={history}>
+      <Router history={history}>
          <App/>
-      </BrowserRouter>
+      </Router>
    </Provider>
 )
 

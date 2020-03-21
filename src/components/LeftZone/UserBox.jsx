@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import history from '../../services/history';
 
@@ -32,6 +31,10 @@ const UserBox = (props) => {
       console.log(name, email);
    }
 
+   const onDeleteClick = () => {
+      props.handleDelete(props.user._id);
+   }
+
    const divClass = `item-user-box ${props.user.uncompletedTodosCount > 0 ? 'red' : 'green'}`;
    return (
          <div className={divClass} onClick={handleSelectUser}>
@@ -45,7 +48,7 @@ const UserBox = (props) => {
                   <input type='button' value='Details' />
                   <div className='actions-save-delete'>
                      <input type='button' value='Save' />
-                     <input type='button' value='Delete' />
+                     <input type='button' value='Delete' onClick={onDeleteClick}/>
                   </div>
                </div>
             </form>
