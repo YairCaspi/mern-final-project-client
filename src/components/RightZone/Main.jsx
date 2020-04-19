@@ -47,7 +47,9 @@ function Main(props) {
                   {...innerProps} />
             }/>
 
-            <Route path='/user/:objectId' component={(innerProps) =>
+            <Route path='/user/:objectId' component={UserItems}/>
+
+            {/* <Route path='/user/:objectId' component={(innerProps) =>
                <UserItems
                   loadUserItems={props.loadUserItems}
                   selectUser={props.selectUser}
@@ -55,7 +57,7 @@ function Main(props) {
                   posts={props.posts}
                   {...innerProps}
                />
-            } />
+            } /> */}
 
          </Switch>
 
