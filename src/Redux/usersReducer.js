@@ -4,19 +4,26 @@ const initialState = {
    users: [],
    isFetching: false,
    updatingUserId: null,
-   selectedUser: null
+   selectedUserId: ''
 };
 
 const usersReducer = (state = initialState, action) => {
    switch (action.type) {
-      case USERS.FETCH_USERS_REQUEST: {
+      case USERS.FETCH_REQUEST: {
          return { ...state, isFetching: true }
       }
-      case USERS.FETCH_USERS_RECEIVE: {
+      case USERS.FETCH_RECEIVE: {
          return { 
             ...state,
             isFetching: false,
             users: action.payload
+         }
+      }
+
+      case USERS.SELECT_USER: {
+         return {
+            ...state,
+            selectedUserId: action.payload
          }
       }
 

@@ -22,8 +22,7 @@ export const getUserTodos = async (userId) => {
    return response.data;
 }
 
-// export default { 
-//    fetchAllUsers,
-//    addNewUser,
-//    deleteUser
-//  };
+export const getUserPosts = async (userId) => {
+   const response = await axios.get(`${BASE_URL}/posts/${userId}`);
+   return response.data;
+}

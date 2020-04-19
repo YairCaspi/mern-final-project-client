@@ -35,7 +35,16 @@ const UserBox = (props) => {
       props.handleDelete(props.user._id);
    }
 
-   const divClass = `item-user-box ${props.user.uncompletedTodosCount > 0 ? 'red' : 'green'}`;
+   let divClass = 'item-user-box';
+   
+   if (props.user.uncompletedTodosCount > 0) {
+      divClass += ' red';
+   } else {
+      divClass += ' green';
+   }
+   if (props.selected) {
+      divClass += ' selected';
+   }
    return (
          <div className={divClass} onClick={handleSelectUser}>
             <form noValidate autoComplete="off">

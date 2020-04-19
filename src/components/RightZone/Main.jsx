@@ -5,8 +5,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
 import * as serverApi from '../../services/serverApi';
-import { actions } from '../../Redux/ActionsCreators/usersActions';
+import * as actionsUsers from '../../Redux/ActionsCreators/usersActions';
 import * as actionsTodos from '../../Redux/ActionsCreators/todosActions';
+import * as actionsPosts from '../../Redux/ActionsCreators/postsActions';
 
 import AddUser from './AddUser';
 import UserItems from './UserItems';
@@ -48,7 +49,10 @@ function Main(props) {
 
             <Route path='/user/:objectId' component={(innerProps) =>
                <UserItems
-                  loadTodos={props.loadTodos}
+                  loadUserItems={props.loadUserItems}
+                  selectUser={props.selectUser}
+                  todos={props.todos}
+                  posts={props.posts}
                   {...innerProps}
                />
             } />
@@ -80,7 +84,12 @@ function Main(props) {
 //#region Redux zone:
 
 const mapStateToProps = (state, props) => {
-   return {...props};
+   
+   return {
+      ...props,
+      todos: state.todos.todos,
+      posts: state.posts.posts,
+   };
 }
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -90,7 +99,7 @@ const mapDispatchToProps = (dispatch, props) => {
             serverApi.addNewUser(user).then(data => {
                console.log(data);
                if (data._id) {
-                  dispatch(actions.addNewUserToUsersList(data));
+                  dispatch(actionsUsers.addNewUserToUsersList(data));
                   resolve();
                } else {
                   reject(data);
@@ -99,9 +108,16 @@ const mapDispatchToProps = (dispatch, props) => {
          });
       },
 
-      loadTodos: (userId) => {
+      selectUser: (userId) => {
+         dispatch(actionsUsers.selectUser(userId));
+      },
+
+      loadUserItems: (userId) => {
          serverApi.getUserTodos(userId).then(data => {
             dispatch(actionsTodos.receiveTodos(data));
+         });
+         serverApi.getUserPosts(userId).then(data => {
+            dispatch(actionsPosts.receivePosts(data));
          });
       }
    };

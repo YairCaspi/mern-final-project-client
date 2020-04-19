@@ -1,14 +1,14 @@
 import { POSTS } from '../actionTypes';
 
-export const requestTodos = () => {
+export const requestPosts = () => {
    return {
-      type: TODOS.FETCH_REQUEST
+      type: POSTS.FETCH_REQUEST
    };
 };
 
-export const receiveTodos = (todosList) => {
+export const receivePosts = (todosList) => {
    return {
-      type: TODOS.FETCH_RECEIVE,
+      type: POSTS.FETCH_RECEIVE,
       payload: todosList
    }
 };

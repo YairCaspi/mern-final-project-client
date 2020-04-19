@@ -17,6 +17,7 @@ export default function UsersList(props) {
          <UserBox 
             key={user._id} 
             user={user}
+            selected={user._id === props.selectedUserId}
             handleDelete={props.deleteUser}
          />
       );

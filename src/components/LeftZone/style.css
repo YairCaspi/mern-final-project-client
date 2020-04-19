@@ -45,6 +45,9 @@
  .item-user-box.green{
    border: 5px solid limegreen;
  }
+ .item-user-box.selected {
+   background-color: gold;
+ }
  .item-user-box a{
    margin: auto;
  }

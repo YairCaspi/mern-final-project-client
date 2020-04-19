@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import * as serverApi from '../../services/serverApi';
-import { actions as usersActions } from '../../Redux/ActionsCreators/usersActions';
+import * as usersActions from '../../Redux/ActionsCreators/usersActions';
 
 import UsersListHeader from './UsersListHeader';
 import UsersList from './UsersList';
@@ -36,6 +36,7 @@ function Main(props) {
             isFetching={props.isFetching}
             users={usersList}
             deleteUser={props.deleteUser}
+            selectedUserId={props.selectedUserId}
          />
       </div>
    );
@@ -44,9 +45,15 @@ function Main(props) {
 //#region Redux area:
 
 const mapStateToProps = (state) => {
+   const {
+      isFetching,
+      users,
+      selectedUserId
+   } = state.users
    return {
-      isFetching: state.users.isFetching,
-      users: state.users.users,
+      isFetching,
+      users,
+      selectedUserId
    };
  }
  
